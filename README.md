@@ -1,6 +1,6 @@
 # search-xiaohongshu
 
-一个用于检索小红书（Xiaohongshu / RedNote / XHS）笔记的 Codex Skill。它复用 Codex Chrome 中已有的小红书登录状态，通过页面自身的搜索模块获取结果，不需要导出 Cookie，也不会在正常搜索时模拟鼠标和键盘操作。
+一个用于检索小红书（Xiaohongshu / RedNote / XHS）笔记的 Codex Skill。它默认在后台内置浏览器中使用小红书登录状态，并兼容用户指定或确有必要的 Chrome，通过页面自身的搜索模块获取结果，不需要导出 Cookie，也不会在正常搜索时模拟鼠标和键盘操作。
 
 ## 能做什么
 
@@ -13,8 +13,8 @@
 ## 使用条件
 
 - Codex 桌面版
-- 已启用 Codex Chrome
-- Chrome 中已经登录小红书
+- 已启用 Codex 内置浏览器；需要时也可使用 Chrome
+- 所选浏览器中已经登录小红书，或能够由用户完成登录
 
 ## 安装
 

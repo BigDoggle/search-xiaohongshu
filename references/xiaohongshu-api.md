@@ -77,7 +77,7 @@ const searchInput = {
 const inputLiteral = JSON.stringify(searchInput).replaceAll("<", "\\u003c");
 ```
 
-在小红书标签的 CDP `Runtime.evaluate` 中执行以下固定表达式。用户输入只能通过 `INPUT_LITERAL` 进入：
+以下固定表达式必须在具备 CDP 能力的小红书标签中通过 `Runtime.evaluate` 执行。默认先从隐藏的内置浏览器标签取得 CDP；只有 `tab.capabilities.get("cdp")` 明确返回空时，才改用受测的隐藏页面搜索流程或切换到 Chrome 兼容路径。用户输入只能通过 `INPUT_LITERAL` 进入：
 
 ```javascript
 (async input => {
@@ -242,7 +242,9 @@ const inputLiteral = JSON.stringify(searchInput).replaceAll("<", "\\u003c");
 调用方式：
 
 ```javascript
+if (!tab?.capabilities?.get) throw new Error("IAB_DOM_ONLY");
 const cdp = await tab.capabilities.get("cdp");
+if (!cdp) throw new Error("IAB_DOM_ONLY");
 const response = await cdp.send("Runtime.evaluate", {
   expression: SEARCH_EXPRESSION,
   awaitPromise: true,
